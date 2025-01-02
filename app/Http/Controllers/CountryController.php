@@ -18,6 +18,21 @@ class CountryController extends Controller
         $jsonCountries = Storage::get('data/countries.json');
         $countries = collect(json_decode($jsonCountries, true));
 
+
+
+
+        $term = $request->get('term', ''); // Get the search term
+
+        // Filter countries based on the search term
+        if (!empty($term)) {
+            $countries = $countries->filter(function ($country) use ($term) {
+                return stripos($country['name'], $term) !== false; // Case-insensitive search
+            });
+        }
+
+
+
+
         $perPage = 50;
         $currentPage = $request->get('page', 1);
 
