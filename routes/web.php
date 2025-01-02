@@ -20,3 +20,6 @@ Route::get('/', function () {
 
 
 Route::get('/get-country', [CountryController::class, 'getCountry'])->name('get.country');
+
+
+Route::get('/get-countries', [CountryController::class, 'getCountries'])->name('get.countries');
